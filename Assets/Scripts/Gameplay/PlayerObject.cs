@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerObject : MonoBehaviour {
 
+    public static float maxDepthAllowed;
     Transform _transform;
     Rigidbody2D _rigidBody;
 
@@ -12,6 +13,12 @@ public class PlayerObject : MonoBehaviour {
         _rigidBody = GetComponent<Rigidbody2D>();
 
         DontDestroyOnLoad(this);
+    }
+
+    void Update()
+    {
+        if (_transform.position.y < maxDepthAllowed)
+            Reset();
     }
 
     public void Reset()

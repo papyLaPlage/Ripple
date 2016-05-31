@@ -8,6 +8,8 @@ public enum eGUIScreen
     E_None,
     E_MainTitle,
     E_MainMenu,
+    E_LevelSelect,
+    E_Credits,
     E_InGame,
     E_Pause
 }
@@ -22,6 +24,8 @@ public class MyGUIManager : MonoBehaviour
 
     public GameObject GUIMainTitle;
     public GameObject GUIMainMenu;
+    public GameObject GUILevelSelect;
+    public GameObject GUICredits;
     public GameObject GUIInGame;
     public GameObject GUIPause;
 
@@ -42,6 +46,12 @@ public class MyGUIManager : MonoBehaviour
                 break;
             case eGUIScreen.E_MainMenu:
                 GUIMainMenu.SetActive(show);
+                break;
+            case eGUIScreen.E_LevelSelect:
+                GUILevelSelect.SetActive(show);
+                break;
+            case eGUIScreen.E_Credits:
+                GUICredits.SetActive(show);
                 break;
             case eGUIScreen.E_InGame:
                 GUIMainMenu.SetActive(show);
