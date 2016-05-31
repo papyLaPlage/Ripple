@@ -4,6 +4,8 @@ using System.Collections;
 public class RippleObject : MonoBehaviour {
 
     CircleCollider2D _collider;
+    SpriteRenderer skinSprite;
+    [SerializeField] private Transform skinTransform;
 
     float delay = 0.5f;
     float timer;
@@ -15,6 +17,7 @@ public class RippleObject : MonoBehaviour {
 	void Start () {
         _collider = GetComponent<CircleCollider2D>();
         LevelBall.rippleDistance = _collider.radius;
+        skinSprite = skinTransform.GetComponent<SpriteRenderer>();
 
         timer = 0f;
         isActive = false;
@@ -47,8 +50,8 @@ public class RippleObject : MonoBehaviour {
 
         _collider.enabled = true;
         transform.Translate(Vector2.zero);
-        //yield return false;
-        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(RippleEffect());
+        yield return false;
 
         _collider.enabled = false;
         while (isActive)
@@ -61,5 +64,20 @@ public class RippleObject : MonoBehaviour {
 
         isActive = false;
         StartCoroutine(WaitForInput());
+    }
+
+    IEnumerator RippleEffect()
+    {
+        skinTransform.gameObject.SetActive(true);
+        float limit = _collider.radius * 2 + 1;
+        skinTransform.localScale = Vector3.zero;
+
+        while (skinTransform.localScale.x < limit)
+        {
+            skinTransform.localScale = Vector3.one * (skinTransform.lossyScale.x + Time.deltaTime*limit*2);
+            skinSprite.color = Color.Lerp(Color.white, Color.clear, Mathf.Pow(skinTransform.localScale.x / limit, 2f));
+            yield return false;
+        }
+        skinTransform.gameObject.SetActive(false);
     }
 }
