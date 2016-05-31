@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public enum eGUIScreen
 {
     E_None,
+    E_Greyscale,
     E_MainTitle,
     E_MainMenu,
     E_LevelSelect,
@@ -22,6 +23,7 @@ public class MyGUIManager : MonoBehaviour
     public eGUIScreen GuiState { get { return guiState; } set { ShowGUI(false); guiState = value; ShowGUI(true); } }
     private eGUIScreen guiState;
 
+    public GameObject GUIGreyscale;
     public GameObject GUIMainTitle;
     public GameObject GUIMainMenu;
     public GameObject GUILevelSelect;
