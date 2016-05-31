@@ -7,6 +7,7 @@ public class GameCamera : MonoBehaviour {
     Transform playerTransform;
     bool isFollowing;
 
+    [SerializeField] private Vector3 offset;
     [SerializeField] private ScreenShader transitionScreenShader;
 
 	// Use this for initialization
@@ -24,6 +25,19 @@ public class GameCamera : MonoBehaviour {
             StartCoroutine(FollowPhase());
         }
         transitionScreenShader.TransitionMaterial.SetFloat("_Cutoff", 1f);
+    }
+
+    IEnumerator FollowPhase()
+    {
+        if (!isFollowing)
+        {
+            isFollowing = true;
+            while (isFollowing)
+            {
+                _transform.position = Vector3.Lerp(_transform.position, playerTransform.position, 0.5f) + offset;
+                yield return false;
+            }
+        }
     }
 
     public void StartTransition()
@@ -52,19 +66,5 @@ public class GameCamera : MonoBehaviour {
     {
         Stop();
         _transform.position = Vector3.back;
-    }
-
-
-    IEnumerator FollowPhase()
-    {
-        if (!isFollowing)
-        {
-            isFollowing = true;
-            while (isFollowing)
-            {
-                _transform.position = Vector3.Lerp(_transform.position, playerTransform.position, 0.5f) + Vector3.back;
-                yield return false;
-            }
-        }
     }
 }

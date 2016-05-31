@@ -30,6 +30,11 @@ public class UIFunctions : MonoBehaviour {
         Application.LoadLevelAdditive(LevelEnd.levelParticle+ID.ToString());
     }
 
+    public void ShowLevelSelect()
+    {
+        MyGUIManager.Instance.GuiState = eGUIScreen.E_LevelSelect;
+    }
+
     public void ShowMainMenu()
     {
         MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
