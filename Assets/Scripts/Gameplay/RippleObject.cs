@@ -52,7 +52,10 @@ public class RippleObject : MonoBehaviour {
         transform.Translate(Vector2.zero);
         StartCoroutine(RippleEffect());
         yield return false;
+        yield return false;
+        yield return false;
 
+        transform.Translate(Vector2.zero);
         _collider.enabled = false;
         while (isActive)
         {

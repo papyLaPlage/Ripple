@@ -8,6 +8,9 @@ public class LevelInitializer : MonoBehaviour {
 
 	// Use this for initialization
 	IEnumerator Start () {
+        if (openMenu)
+            MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
+
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerObject>().Reset();
         PlayerObject.maxDepthAllowed = maxDepthAllowed;
         Camera.main.GetComponent<GameCamera>().FollowPlayer();
@@ -20,6 +23,6 @@ public class LevelInitializer : MonoBehaviour {
 
         if (openMenu)
             MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
-	}
+    }
 	
 }
