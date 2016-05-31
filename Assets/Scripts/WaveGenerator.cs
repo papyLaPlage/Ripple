@@ -37,8 +37,9 @@ public class WaveGenerator : MonoBehaviour {
     // init 
     void Awake()
     {
-        width = sourceimage.width;
-        height = sourceimage.height;
+		//sourceimage = CameraTexture.GetTexture2D();
+		width = 320;
+        height = 320;
 
         targettexture = new Texture2D(width, height);
         GetComponent<Renderer>().material.mainTexture = targettexture;
@@ -57,7 +58,8 @@ public class WaveGenerator : MonoBehaviour {
         oldind = width;
         newind = width * (height + 3);
 
-        int counter = 0;
+
+       /* int counter = 0;
         for (int y = 0; y < height; y++) 
 	    {
             for (int x = 0; x < width; x++) 
@@ -65,23 +67,32 @@ public class WaveGenerator : MonoBehaviour {
                 texture[counter] = sourceimage.GetPixel(x, y);
                 counter++;
             }
-        }
-    }
-
-    void Start()
-    {
-        DontDestroyOnLoad(this);
+        }*/
     }
 
     void Update()
     {
-        //  image(img, 0, 0); //Displays images to the screen
-        //  loadPixels(); // Loads the pixel data for the display window into the pixels[] array
-        //  texture = pixels;
+		//  image(img, 0, 0); //Displays images to the screen
+		//  loadPixels(); // Loads the pixel data for the display window into the pixels[] array
+		//  texture = pixels;
 
-        Newframe();
+		sourceimage = CameraTexture.GetTexture2D();
+		//texture = new Color[width * height];
+		int counter = 0;
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				texture[counter] = sourceimage.GetPixel(x, y);
+				counter++;
+			}
+		}
+
+		Newframe();
         int px = 0;
         int py = 0;
+
+		
 
         for (int i = 0; i < pixels.Length; i++) 
         {
@@ -97,20 +108,23 @@ public class WaveGenerator : MonoBehaviour {
         // left mouse button is pressed down
         if (Input.GetMouseButton(0))
         {
-            // raycast to mousecursor location
-            RaycastHit hit;
-            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, raycastDistance, raycastMask.value))
-                return;
+			// raycast to mousecursor location
+			/* 
+			RaycastHit hit;
+			if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, raycastDistance, raycastMask.value))
+				return;
+			*/
 
-            // get real coordinates
-            Vector2 pixelUV = hit.textureCoord;
-            pixelUV.x *= width;
-            pixelUV.y *= height;
+			// get real coordinates
+			//Vector2 pixelUV = hit.textureCoord;
+			Vector3 pixelUV = Camera.main.WorldToViewportPoint(Input.mousePosition) * 10;
+			pixelUV.x -= 5;
+            pixelUV.y -= 5;
 
-            // then apply waves on that position
-            Disturb((int)pixelUV.x, (int)pixelUV.y);
+			// then apply waves on that position
+			Disturb((int)pixelUV.x, (int)pixelUV.y);
         }
-
+		
     }
 
     // ripples 
