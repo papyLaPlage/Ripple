@@ -21,7 +21,9 @@ public class LevelEnd : MonoBehaviour {
 
     IEnumerator TransitionPhase()
     {
-        Camera.main.GetComponent<GameCamera>().Stop();
+        GameCamera gameCamera = Camera.main.GetComponent<GameCamera>();
+        gameCamera.Stop();
+        gameCamera.StartTransition();
         while (Time.timeScale > 0f)
         {
             Time.timeScale = Mathf.Clamp(Time.timeScale - Time.unscaledDeltaTime, 0f, 1f);

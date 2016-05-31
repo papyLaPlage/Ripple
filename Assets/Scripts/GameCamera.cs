@@ -7,6 +7,8 @@ public class GameCamera : MonoBehaviour {
     Transform playerTransform;
     bool isFollowing;
 
+    [SerializeField] private ScreenShader transitionScreenShader;
+
 	// Use this for initialization
 	void Start () {
         _transform = GetComponent<Transform>();
@@ -21,6 +23,25 @@ public class GameCamera : MonoBehaviour {
         {
             StartCoroutine(FollowPhase());
         }
+        transitionScreenShader.TransitionMaterial.SetFloat("_Cutoff", 1f);
+    }
+
+    public void StartTransition()
+    {
+        StartCoroutine(TransitionPhase());
+    }
+
+    IEnumerator TransitionPhase()
+    {
+        transitionScreenShader.enabled = true;
+        yield return false;
+
+        while (Time.timeScale < 1f)
+        {
+            transitionScreenShader.TransitionMaterial.SetFloat("_Cutoff", 1f - Time.timeScale);
+            yield return false;
+        }
+        transitionScreenShader.enabled = false;
     }
 
     public void Stop()
