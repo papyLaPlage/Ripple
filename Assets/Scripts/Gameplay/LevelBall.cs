@@ -10,7 +10,7 @@ public class LevelBall : MonoBehaviour {
     Vector2 targetPosition;
 
     public static float rippleDistance;
-    static float motionFactor = 4f; // 1 = normal speed, 2 = twice as fast, 0.5 half as fast
+    static float motionFactor = 4.5f; // 1 = normal speed, 2 = twice as fast, 0.5 half as fast
     float timer;
 
     bool isExpending;
