@@ -32,6 +32,9 @@ public class LevelEnd : MonoBehaviour {
         Time.timeScale = 0f;
         Destroy(GameObject.Find("Level"));
 
-        Application.LoadLevelAdditive(levelParticle+nextLevelID.ToString());
+        if(isLastLevel)
+            Application.LoadLevelAdditive("empty");
+        else
+            Application.LoadLevelAdditive(levelParticle + nextLevelID.ToString());
     }
 }

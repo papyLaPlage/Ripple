@@ -6,8 +6,6 @@ public class UIFunctions : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
-
         DontDestroyOnLoad(this);
 	}
 
