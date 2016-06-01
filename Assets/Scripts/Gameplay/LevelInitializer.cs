@@ -9,7 +9,7 @@ public class LevelInitializer : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         if (openMenu)
-            MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
+            MyGUIManager.Instance.GuiState = eGUIScreen.E_Greyscale;
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerObject>().Reset();
         PlayerObject.maxDepthAllowed = maxDepthAllowed;

@@ -41,6 +41,11 @@ public class GameCamera : MonoBehaviour {
         }
     }
 
+    public void SetFadeToTotal()
+    {
+        transitionScreenShader.TransitionMaterial.SetFloat("_Cutoff", 1f);
+    }
+
     public void StartTransition()
     {
         StartCoroutine(TransitionPhase());
