@@ -3,6 +3,10 @@ using System.Collections;
 
 public class LevelBall : MonoBehaviour {
 
+    [SerializeField] private Renderer _renderer;
+    public static Color targetColor;
+    Color fromColor;
+
     [SerializeField] private float expensionDistance;
     Transform _transform;
     Rigidbody2D _rigidBody;
@@ -37,10 +41,12 @@ public class LevelBall : MonoBehaviour {
         if (!isExpending)
         {
             isExpending = true;
+            fromColor = _renderer.material.color;
             while (isExpending)
             {
                 timer += Time.deltaTime * motionFactor;
                 _rigidBody.MovePosition(Vector2.Lerp(originPosition, targetPosition, timer));
+                _renderer.material.color = Color.Lerp(fromColor, targetColor, timer);
                 if (timer > 1f)
                     break;
                 yield return false;
@@ -75,9 +81,14 @@ public class LevelBall : MonoBehaviour {
             if (timer <= 0f)
             {
                 timer = -1f;
-                _rigidBody.velocity = Vector2.zero;
-                _transform.position = originPosition;
+                ResetPosition();
             }
         }
+    }
+
+    void ResetPosition()
+    {
+        _rigidBody.velocity = Vector2.zero;
+        _transform.position = originPosition;
     }
 }

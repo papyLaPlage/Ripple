@@ -37,8 +37,8 @@ public class UIFunctions : MonoBehaviour {
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 0f;
         MyGUIManager.Instance.GuiState = eGUIScreen.E_Greyscale;
+        Time.timeScale = 0f;
         GameCamera gameCamera = Camera.main.GetComponent<GameCamera>();
         gameCamera.SetFadeToTotal();
         gameCamera.StartTransition();

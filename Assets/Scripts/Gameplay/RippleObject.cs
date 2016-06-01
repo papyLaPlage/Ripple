@@ -7,6 +7,8 @@ public class RippleObject : MonoBehaviour {
     SpriteRenderer skinSprite;
     [SerializeField] private Transform skinTransform;
 
+    [SerializeField] private Color[] possibleColors;
+
     float delay = 0.5f;
     float timer;
     bool isActive;
@@ -37,6 +39,7 @@ public class RippleObject : MonoBehaviour {
                 //Debug.Log(Input.GetTouch(0).deltaPosition);
                 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 transform.position = newPosition;
+                LevelBall.targetColor = possibleColors[Random.Range(0,possibleColors.Length-1)];
                 StartCoroutine(ActivePhase());
             }
             yield return false;
