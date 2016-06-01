@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraTexture : MonoBehaviour {
+public class CameraTexture : MonoBehaviour
+{
 
 	public static Camera cam;
 	public static RenderTexture renderTexture;
 
 	// Use this for initialization
-	void Awake () {
+	void Awake()
+	{
 		cam = GetComponent<Camera>();
 		renderTexture = new RenderTexture(320, 320, 16);
 		cam.targetTexture = renderTexture;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+	void Update()
+	{
+
 	}
 
 	static public Texture2D GetTexture2D()
