@@ -34,6 +34,7 @@ public class GameCamera : MonoBehaviour {
             isFollowing = true;
             while (isFollowing)
             {
+				if(_transform != null)
                 _transform.position = Vector3.Lerp(_transform.position, playerTransform.position, 0.5f) + offset;
                 yield return false;
             }

@@ -23,7 +23,9 @@ public class PlayerObject : MonoBehaviour {
 
     public void Reset()
     {
-        _rigidBody.velocity = Vector2.zero;
-        _transform.position = Vector3.zero;
+		if(_rigidBody != null)
+			_rigidBody.velocity = Vector2.zero;
+		if (_transform != null)
+			_transform.position = Vector3.zero;
     }
 }
