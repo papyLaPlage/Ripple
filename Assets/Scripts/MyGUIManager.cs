@@ -43,6 +43,9 @@ public class MyGUIManager : MonoBehaviour
         {
             case eGUIScreen.E_None:
                 break;
+            case eGUIScreen.E_Greyscale:
+                GUIGreyscale.SetActive(show);
+                break;
             case eGUIScreen.E_MainTitle:
                 GUIMainTitle.SetActive(show);
                 break;
