@@ -38,7 +38,7 @@ public class MyGUIManager : MonoBehaviour
 
     private void ShowGUI(bool show)
     {
-        Debug.Log("Show GUI : " + guiState);
+        //Debug.Log("Show GUI : " + guiState);
         switch (guiState)
         {
             case eGUIScreen.E_None:
