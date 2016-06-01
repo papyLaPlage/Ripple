@@ -35,6 +35,16 @@ public class UIFunctions : MonoBehaviour {
         MyGUIManager.Instance.GuiState = eGUIScreen.E_LevelSelect;
     }
 
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 0f;
+        MyGUIManager.Instance.GuiState = eGUIScreen.E_Greyscale;
+        GameCamera gameCamera = Camera.main.GetComponent<GameCamera>();
+        gameCamera.SetFadeToTotal();
+        gameCamera.StartTransition();
+        Application.LoadLevelAdditive("main");
+    }
+
     public void ShowMainMenu()
     {
         MyGUIManager.Instance.GuiState = eGUIScreen.E_MainMenu;
