@@ -50,6 +50,7 @@ public class MyGUIManager : MonoBehaviour
                 GUIMainTitle.SetActive(show);
                 break;
             case eGUIScreen.E_MainMenu:
+                GetComponent<SaveManager>().ShowClearedLevels();
                 GUIMainMenu.SetActive(show);
                 break;
             case eGUIScreen.E_LevelSelect:
