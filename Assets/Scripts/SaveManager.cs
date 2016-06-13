@@ -26,7 +26,8 @@ public class SaveManager : MonoBehaviour {
                 selectButton.interactable = true;
                 for (int i = 0; i <= clearedLevels; i++)
                 {
-                    levelButtons[i].interactable = true;
+                    if(i<levelButtons.Length)
+                        levelButtons[i].interactable = true;
                 }
             }
         }

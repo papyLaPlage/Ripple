@@ -3,9 +3,17 @@ using System.Collections;
 
 public class PlayerObject : MonoBehaviour {
 
+    public static PlayerObject Instance { get; private set; }
+
     public static float maxDepthAllowed;
+    public SpriteRenderer _renderer;
     Transform _transform;
     Rigidbody2D _rigidBody;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
 	// Use this for initialization
 	void Start () {

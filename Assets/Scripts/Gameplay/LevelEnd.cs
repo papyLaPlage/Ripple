@@ -21,7 +21,8 @@ public class LevelEnd : MonoBehaviour {
 
     IEnumerator TransitionPhase()
     {
-        PlayerPrefs.SetInt("clearedLevels", nextLevelID-1);
+        if(PlayerPrefs.GetInt("clearedLevels") < nextLevelID - 1)
+            PlayerPrefs.SetInt("clearedLevels", nextLevelID-1);
         GameCamera gameCamera = Camera.main.GetComponent<GameCamera>();
         gameCamera.Stop();
         gameCamera.StartTransition();

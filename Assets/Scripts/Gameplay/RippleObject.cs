@@ -40,6 +40,8 @@ public class RippleObject : MonoBehaviour {
                 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 transform.position = newPosition;
                 LevelBall.targetColor = possibleColors[Random.Range(0,possibleColors.Length-1)];
+                LevelBall.targetColor.a = 1f;
+                PlayerObject.Instance._renderer.color = LevelBall.targetColor;
                 StartCoroutine(ActivePhase());
             }
             yield return false;
